@@ -1,0 +1,74 @@
+div.rebecca {
+    background-color:rebeccapurple;
+}
+
+#background {
+    background-image: url('../assets/wc1-map-base.png');
+    height: 1024px;
+    width: 1024px;
+
+}
+
+#hero {
+    background-image: url('../assets/wc1-selector-outline.png');
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: 808px;
+    left: 264px;
+}
+
+#peasant1 {
+    top: 56px;
+    left: 728px;
+}
+
+#peasant2 {
+    top: 808px;
+    left: 248px;
+}
+
+#peasant3 {
+    top: 808px;
+    left: 264px;
+}
+
+#selectIndicator{
+    background-color: rgba(15, 255, 15, 0.4);
+    opacity:0.4;
+    border: 1px dotted rgb(15, 182, 15);
+    z-index: 3;
+    position: absolute;
+    display:none;
+}
+
+.grid {
+    background-image: url('../assets/wc1-selector-outline.png');
+    background-repeat: repeat;
+    z-index: 4;
+    height: 1024px;
+    width: 1024px;
+    display:none;
+}
+
+.unitSelected {
+    z-index: 4;
+    border: 1px solid rgb(6,167,6);
+    /* This is so adding a border doesn't move the image */
+    margin: -1px;
+}
+
+html { 
+    scroll-behaviour: smooth
+}
+
+.peasant {
+    background-image: url('../assets/wc1-human-standing.png');
+    height: 16px;
+    width: 16px;
+    position: absolute;
+}
+
+body {
+    background-color: black;
+} 

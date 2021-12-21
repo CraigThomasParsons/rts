@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Warcraft</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="jquery/jqueryui/jquery-ui.min.css">
+        <script src="jquery/jqueryui/external/jquery/jquery.js"></script>
+        <script src="jquery/jqueryui/jquery-ui.min.js"></script>
+        <script src="jquery/jquery-3.6.0.min.js"></script>
+        <script src="script/clickndragbox.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" draggable="false">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="background"
+            onmousedown="onSelectMouseDown(event)"
+            onmousemove="dragSelectionBox(event)"
+            oncontextmenu="rightClickContextMenu(event)"
+        >
+            <div id="hero" class="peasant"></div>
+            <div id="peasant1" class="peasant"></div>
+            <div id="peasant2" class="peasant"></div>
+            <div id="peasant3" class="peasant"></div>
+
+            <div class="grid"></div>
+        </div>
+
+        <script src="script/script.js" async defer></script>
+        <script>
+            /**
+             * This is temporary, eventually this will wait for a server to come back.
+             */
+            function waitForCameraStart() {
+
+                if (cameraStart !== undefined) {
+                    window.scrollTo({
+                        top: cameraStart.top,
+                        left: cameraStart.left,
+                        behavior: 'smooth'
+                    });
+                }
+
+            }
+            $(document).ready(function() {
+
+                let unit = document.getElementById('hero');
+
+                unit.onclick = function() {
+                    selectUnit(this.id);
+                }
+
+                // Initilize the peasant.
+                unit.style.top = hero.top + 'px';
+                unit.style.left = hero.left + 'px';
+
+                document.onmouseup = hideSelectionBox;
+
+                setTimeout(waitForCameraStart, 1000);
+
+                $("#hero").fadeOut(4);
+
+            });
+        </script>
+    </body>
+</html>
