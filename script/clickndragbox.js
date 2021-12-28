@@ -103,7 +103,7 @@ function onSelectMouseDown(clickEvent, debug) {
 
         selectIndicator = document.createElement('div');
         selectIndicator.setAttribute('id', 'selectIndicator');
-        document.getElementById('background').appendChild(selectIndicator);
+        document.getElementById('main').appendChild(selectIndicator);
     }
 
     // Trying to only show the rectangle if its dragging, sometimes its stuck on.
@@ -150,17 +150,29 @@ function showSelectionBox(clickEvent, debug) {
     }
 }
 
-function hideSelectionBox() {
+function hideSelectionBox(clickEvent) {
     let selectIndicator = document.getElementById('selectIndicator');
+    const LEFT_MOUSE_BUTTON = 1;
+    const RIGHT_MOUSE_BUTTON = 3;
 
-    let peasants = document.getElementsByClassName("peasant");
-    for (let index = 0; index < peasants.length; index++) {
-        const element = peasants[index];
-        if ((element !== null) && elementCollision($(selectIndicator), $(element))) {
-            selectUnit(element.id);
-        } else {
-            unSelectUnit(element.id);
-        }
+    switch (clickEvent.which) {
+        case LEFT_MOUSE_BUTTON:
+            // Unselect Selected Units.
+            let peasants = document.getElementsByClassName("peasant");
+            for (let index = 0; index < peasants.length; index++) {
+                const element = peasants[index];
+                if ((element !== null) && elementCollision($(selectIndicator), $(element))) {
+                    selectUnit(element.id);
+                } else {
+                    unSelectUnit(element.id);
+                }
+            }
+            break;
+        case RIGHT_MOUSE_BUTTON:
+            //console.log("Move Units");
+            break;
+        default:
+            console.log('Unknown mouse button', clickEvent.which);
     }
 
     if (selectIndicator !== null) {
@@ -168,12 +180,10 @@ function hideSelectionBox() {
         selectIndicator.remove();
     }
 
+
     cursorState = {
         buttonDown: false,
     }
-
-    // selectIndicator.style.display = 'none';
-    // selectIndicator.remove();
 }
 
 
@@ -181,9 +191,8 @@ function hideSelectionBox() {
  * Took this from stackoverflow, there are a lot of collision detection resources.
  * https://stackoverflow.com/questions/5419134/how-to-detect-if-two-divs-touch-with-jquery
  *
- * @param {*} $div1
- * @param {*} $div2
- *
+ * @param {*} $div1 needs to be wrapped in Jquery
+ * @param {*} $div2 needs to be wrapped in Jquery
  * @returns Boolean
  */
  function elementCollision($div1, $div2) {
@@ -209,4 +218,10 @@ function hideSelectionBox() {
     }
 
     return true;
-  }
+}
+
+$(document).ready(function() {
+
+    document.getElementById('main').onmousemove=dragSelectionBox;
+    document.onmouseup = hideSelectionBox;
+});
