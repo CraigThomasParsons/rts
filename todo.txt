@@ -1,0 +1,5 @@
+In https://github.com/CraigThomasParsons/rts
+1 -> You want to set up react in this repo.
+2. Using: https://github.com/gitname/react-gh-pages, https://blog.logrocket.com/deploying-react-apps-github-pages/
+-> You want to set up this repo to deploy to
+https://github.com/CraigThomasParsons/craigthomasparsons.github.io
